@@ -3,7 +3,7 @@ import EmailContext from '../context/EmailContext'
 
 function EmailBody() {
 
-   const {currEmail, setEmails, emails} = useContext(EmailContext)
+   const {currEmail, setEmails, emails, handleDateformat} = useContext(EmailContext)
 
 
 
@@ -44,14 +44,14 @@ function EmailBody() {
                 {
                     emails.map((el) => {
                         if(el.id == currEmail.id) {
-                            return <p>{el.subject}</p>
+                            return <div><p>{el.subject}</p><small>{handleDateformat(el)}</small></div>
                         }
                     })
                 }
 
                 <button onClick={handleFavClick}>Mark as favorite</button>
             </div>
-
+            
             <div className='email-body-rightcol-content'>
                 {currEmail.body && renderEmailBody()}
             </div>

@@ -4,7 +4,7 @@ import EmailContext from '../context/EmailContext';
 
 function EmailCard( {el, readStatus} ) {
 
-    const {setEmails, setCurrEmail} = useContext(EmailContext)
+    const {setEmails, setCurrEmail, handleDateformat} = useContext(EmailContext)
     
     //https://flipkart-email-mock.vercel.app/?id=1
 
@@ -31,6 +31,10 @@ function EmailCard( {el, readStatus} ) {
         e.target.parentNode.parentNode.classList.add('extended')
         getCurrEmailBody(el.id)
     }
+
+
+
+
   return (
     <div className={readStatus ? 'card active':'card'} onClick={handleCardClick}>
         <div className="card-leftcol">
@@ -45,7 +49,7 @@ function EmailCard( {el, readStatus} ) {
             </div>
             <p>{el.short_description}</p>
             <div>
-                <p>Date</p>
+                <p>{handleDateformat(el)}</p>
                 {el.isFav && <p>Favorite</p>}
             </div>
         </div>
